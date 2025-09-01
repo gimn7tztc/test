@@ -1,0 +1,15 @@
+{
+  "name": "travel-planner",
+  "version": "1.0.0",
+  "description": "Simple travel planner using OpenAI",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node -e \"console.log('No tests defined')\""
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "openai": "^5.16.0"
+  }
+}
