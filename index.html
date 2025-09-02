@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>Travel Planner</title>
+</head>
+<body>
+  <h1>Travel Planner</h1>
+  <form id="planForm">
+    <label>場所: <input id="location" required /></label><br />
+    <label>目的: <input id="purpose" required /></label><br />
+    <label>移動手段: <input id="transport" required /></label><br />
+    <label>宿: <input id="accommodation" required /></label><br />
+    <button type="submit">プラン生成</button>
+  </form>
+  <h2>提案されたプラン</h2>
+  <pre id="result"></pre>
+  <script>
+    document.getElementById('planForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = {
+        location: document.getElementById('location').value,
+        purpose: document.getElementById('purpose').value,
+        transport: document.getElementById('transport').value,
+        accommodation: document.getElementById('accommodation').value
+      };
+      const res = await fetch('/plan', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const json = await res.json();
+      document.getElementById('result').textContent = json.plan || json.error;
+    });
+  </script>
+</body>
+</html>
